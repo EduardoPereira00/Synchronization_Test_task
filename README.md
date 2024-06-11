@@ -6,7 +6,7 @@ This program has the objective to synchronize two folders, a source and a replic
 
 The objective was to provide to the console the folder paths, the synchronization interval and the log file path. For that, I implemented a parser function called ``` "parse_arguments" ```. 
 
-For the synchronization of the files, I started by creating a snapshot function called ```snapshot_source_folder```. This function creates a snapshot of the source folder by generating a dictionary. This dictionary contains the relative paths of all files in the source folder as keys and their respective MD% hashes as values. This will be used to compare the current state of the source with the replica folder.
+For the synchronization of the files, I started by creating a snapshot function called ```snapshot_source_folder```. This function creates a snapshot of the source folder by generating a dictionary. This dictionary contains the relative paths of all files in the source folder as keys and their respective MD5 hashes as values. This will be used to compare the current state of the source with the replica folder.
 
 After that, for the synchronization logic, I implemented a function for each fold action (new, update and delete). The ```sync_new_files``` function verifies if the file does not exist in the replica folder, then it logs the action, ensures the directory structure exists in the folder and copies the file from the source to the replica folder.
 The ```sync_updated_files``` function verifies if the file exists in the replica folder and then calculates the MD5 of the file. Then it verifies if the MD5 is different, and if so, it logs the action and then updates the replica file to match the source file.
